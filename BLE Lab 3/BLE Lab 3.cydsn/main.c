@@ -59,13 +59,13 @@
 /*****************************************************************************
 * Global variables
 *****************************************************************************/
-static CYBLE_GAP_CONN_UPDATE_PARAM_T hrmConnectionParam = 
-{
-    16,         /* Minimum connection interval of 20 ms */
-    16,         /* Maximum connection interval of 20 ms */
-    49,         /* Slave latency of 49 */
-    500         /* Supervision timeout of 5 seconds */
-};
+//static CYBLE_GAP_CONN_UPDATE_PARAM_T hrmConnectionParam =
+//{
+//    16,         /* Minimum connection interval of 20 ms */
+//    16,         /* Maximum connection interval of 20 ms */
+//    49,         /* Slave latency of 49 */
+//    500         /* Supervision timeout of 5 seconds */
+//};
 
 
 /*****************************************************************************
@@ -156,13 +156,14 @@ int main()
 {
     static uint32 previousTimestamp = 0;
     static uint32 currentTimestamp = 0;
-    CYBLE_LP_MODE_T bleMode;
+    //CYBLE_LP_MODE_T bleMode;
     uint8 interruptStatus;
     
     /* Initialize all blocks of the system */
 	InitializeSystem();
     
     /* Run forever */
+    PWM_1_Start();
     for(;;)
     {
         /* Wake up ADC from low power mode */
@@ -179,16 +180,16 @@ int main()
         /* Measure the current system timestamp from watchdog timer */
         currentTimestamp = WatchdogTimer_GetTimestamp();        
 
-//        /*Update BLE connection parameters a few seconds after connection */
-        if((CyBle_GetState() == CYBLE_STATE_CONNECTED) && 
-           (connParamRequestState == CONN_PARAM_REQUEST_NOT_SENT))
-        {
-            if((currentTimestamp - timestampWhenConnected) > TIME_SINCE_CONNECTED_MS)
-            {
-                CyBle_L2capLeConnectionParamUpdateRequest(cyBle_connHandle.bdHandle, &hrmConnectionParam);
-                connParamRequestState = CONN_PARAM_REQUEST_SENT;
-            }
-        }
+        /* Update BLE connection parameters a few seconds after connection */
+//        if((CyBle_GetState() == CYBLE_STATE_CONNECTED) && 
+//           (connParamRequestState == CONN_PARAM_REQUEST_NOT_SENT))
+//        {
+//            if((currentTimestamp - timestampWhenConnected) > TIME_SINCE_CONNECTED_MS)
+//            {
+//                CyBle_L2capLeConnectionParamUpdateRequest(cyBle_connHandle.bdHandle, &hrmConnectionParam);
+//                connParamRequestState = CONN_PARAM_REQUEST_SENT;
+//            }
+//        }
         
         
         /* Send Heart Rate notification over BLE every second.
@@ -224,7 +225,7 @@ int main()
 
             
             /* Request the BLE block to enter Deep Sleep */
-            bleMode = CyBle_EnterLPM(CYBLE_BLESS_DEEPSLEEP);
+          //  bleMode = CyBle_EnterLPM(CYBLE_BLESS_DEEPSLEEP);
 
             
             /* Check if the BLE block entered Deep Sleep and if so, then the 
@@ -237,24 +238,24 @@ int main()
             interruptStatus = CyEnterCriticalSection();
             
             /* Check if the BLE block entered Deep Sleep */
-            if(CYBLE_BLESS_DEEPSLEEP == bleMode)
-            {
+           // if(CYBLE_BLESS_DEEPSLEEP == bleMode)
+          //  {
                 /* Check the current state of BLE - System can enter Deep Sleep
                  * only when the BLE block is starting the ECO (during 
                  * pre-processing for a new connection event) or when it is 
                  * idle.
                  */
-                if((CyBle_GetBleSsState() == CYBLE_BLESS_STATE_ECO_ON) ||
-                   (CyBle_GetBleSsState() == CYBLE_BLESS_STATE_DEEPSLEEP))
-                {
-                    CySysPmDeepSleep();
-                }
-            }
+          //      if((CyBle_GetBleSsState() == CYBLE_BLESS_STATE_ECO_ON) ||
+          //         (CyBle_GetBleSsState() == CYBLE_BLESS_STATE_DEEPSLEEP))
+          //      {
+          //          CySysPmDeepSleep();
+          //      }
+         //   }
             /* The else condition signifies that the BLE block cannot enter 
              * Deep Sleep and is in Active mode.  
              */
-            else
-            {
+          //  else
+          //  {
                 /* At this point, the CPU can enter Sleep, but Deep Sleep is not
                  * allowed. 
                  * There is one exception - at a connection event, when the BLE 
@@ -267,11 +268,11 @@ int main()
                  * system Deep Sleep would then be entered. Deep Sleep is the 
                  * preferred low power mode since it takes much lesser current.
                  */
-                if(CyBle_GetBleSsState() != CYBLE_BLESS_STATE_EVENT_CLOSE)
-                {
-                    CySysPmSleep();
-                }
-            }
+          //      if(CyBle_GetBleSsState() != CYBLE_BLESS_STATE_EVENT_CLOSE)
+          //      {
+          //          CySysPmSleep();
+          //      }
+          //  }
             
             /* Exit Critical section - Global interrupts are enabled again */
             CyExitCriticalSection(interruptStatus);

@@ -46,6 +46,10 @@
 #include <BLE_1_eventHandler.h>
 #include <Opamp.h>
 #include <ADC.h>
+#include <Clock_1.h>
+#include <PWM_1.h>
+#include <Pin_1.h>
+#include <Pin_1_aliases.h>
 #include <BLE_1_bless_isr.h>
 #include <ADC_IRQ.h>
 #include <ADC_intClock.h>

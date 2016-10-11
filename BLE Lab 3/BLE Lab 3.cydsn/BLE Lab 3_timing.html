@@ -539,7 +539,7 @@ function getElementsByClass(rootNode, elemName, className)
 <tr> <td class="prop"> Project :</td>
 <td class="proptext"> BLE Lab 3</td></tr>
 <tr> <td class="prop"> Build Time :</td>
-<td class="proptext"> 09/30/16 11:20:24</td></tr>
+<td class="proptext"> 10/11/16 18:08:25</td></tr>
 <tr> <td class="prop"> Device :</td>
 <td class="proptext"> CY8C4247LQI-BL483</td></tr>
 <tr> <td class="prop"> Temperature :</td>
@@ -611,6 +611,14 @@ Clock Summary Section</span>
  <td class = "text_info"> </td>
 </tr>
 <tr> 
+ <td class = "text_info">Clock_1(FFB)</td>
+ <td class = "text_info">Clock_1(FFB)</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number"> N/A </td>
+ <td class = "text_info"> </td>
+</tr>
+<tr> 
  <td class = "text_info">CyECO</td>
  <td class = "text_info">CyECO</td>
  <td class = "number">24.000&nbsp;MHz</td>
@@ -620,6 +628,14 @@ Clock Summary Section</span>
 </tr>
 <tr> 
  <td class = "text_info">CyHFCLK</td>
+ <td class = "text_info">CyHFCLK</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number"> N/A </td>
+ <td class = "text_info"> </td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock_1</td>
  <td class = "text_info">CyHFCLK</td>
  <td class = "number">12.000&nbsp;MHz</td>
  <td class = "number">12.000&nbsp;MHz</td>
@@ -696,6 +712,94 @@ Clock To Output Section</span>
 <div>
 <a href="#" style="text-decoration: none; color: inherit;">
 <span class="sec_head"><span style="font-family: monospace;">+</span>
+Clock_1(FFB)</span>
+</a>
+</div><div class="sta_secbody"><table class="sta_tscs">
+ <thead> 
+<tr> 
+<th>Source</th>
+<th>Destination</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">\PWM_1:cy_m0s8_tcpwm_1\/line_out</td>
+ <td class = "text_info">Pin_1(0)_PAD</td>
+ <td class = "number">16.095</td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="3">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">m0s8tcpwmcell</td>
+ <td class = "text_info">F(TCPWM,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\PWM_1:cy_m0s8_tcpwm_1\</td>
+ <td class = "text_info">\PWM_1:cy_m0s8_tcpwm_1\/clock</td>
+ <td class = "text_info">\PWM_1:cy_m0s8_tcpwm_1\/line_out</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">Net_1319</td>
+ <td class = "text_info">\PWM_1:cy_m0s8_tcpwm_1\/line_out</td>
+ <td class = "text_info">Pin_1(0)/pin_input</td>
+ <td class = "number">1.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">iocell5</td>
+ <td class = "text_info">P0[0]</td>
+ <td class = "number">1</td>
+ <td class = "text_info">Pin_1(0)</td>
+ <td class = "text_info">Pin_1(0)/pin_input</td>
+ <td class = "text_info">Pin_1(0)/pad_out</td>
+ <td class = "number">15.095</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">Pin_1(0)_PAD</td>
+ <td class = "text_info">Pin_1(0)/pad_out</td>
+ <td class = "text_info">Pin_1(0)_PAD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Clock path delay</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+</tbody>
+ </table> 
+</div>
+</div>
+<div class="sta_sec" >
+<div>
+<a href="#" style="text-decoration: none; color: inherit;">
+<span class="sec_head"><span style="font-family: monospace;">+</span>
 CyHFCLK</span>
 </a>
 </div><div class="sta_secbody"><table class="sta_tscs">
@@ -728,7 +832,7 @@ CyHFCLK</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">iocell5</td>
+ <td class = "text_info">iocell6</td>
  <td class = "text_info">P2[7]</td>
  <td class = "number">1</td>
  <td class = "text_info">SW2_Switch(0)</td>

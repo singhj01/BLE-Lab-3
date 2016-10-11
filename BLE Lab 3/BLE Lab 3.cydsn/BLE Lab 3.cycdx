@@ -1,52 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="BLE_1" BASE="0x0" SIZE="0x0" desc="" visible="true">
-    <block name="or_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="LFCLK" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="cy_m0s8_ble" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="bless_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  </block>
-  <block name="Led_Connected_Blue" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="Opamp" BASE="0x0" SIZE="0x0" desc="OpAmp" visible="true">
-    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="cy_analog_virtualmux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="cy_psoc4_abuf" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <register name="CTB_CTRL" address="0x40300000" bitWidth="32" desc="Global CTB IP and power control">
-      <field name="DEEPSLEEP_ON" from="30" to="30" access="RW" resetVal="" desc="Selects component behavior in DeepSleep power mode">
-        <value name="DISABLE" value="0" desc="CTB IP disabled off during DeepSleep power mode" />
-        <value name="ENABLE" value="1" desc="CTB IP remains enabled during DeepSleep power mode (if ENABLED=1)" />
-      </field>
-      <field name="ENABLED" from="31" to="31" access="RW" resetVal="" desc="Selects component behavior in DeepSleep power mode">
-        <value name="DISABLE" value="0" desc="CTB IP disabled (put analog in power down, open all switches)" />
-        <value name="ENABLE" value="1" desc="CTB IP enabledCTB IP enabled" />
-      </field>
-    </register>
-    <register name="OA_RES_CTRL" address="0x40300004" bitWidth="32" desc="Opamp and resistor control">
-      <field name="OA_PWR_MODE" from="1" to="0" access="RW" resetVal="" desc="Selects power for opamp">
-        <value name="OFF" value="00" desc="Off" />
-        <value name="LOW" value="01" desc="Low power" />
-        <value name="MED" value="10" desc="Medium power" />
-        <value name="HIGH" value="11" desc="High power" />
-      </field>
-      <field name="OA0_DRIVE_STR_SEL" from="2" to="2" access="RW" resetVal="" desc="Opamp output strenght select">
-        <value name="1x" value="0" desc="Internal only" />
-        <value name="10x" value="1" desc="Output to pin" />
-      </field>
-      <field name="OA_PUMP_EN" from="11" to="11" access="RW" resetVal="" desc="Selects pump">
-        <value name="DISABLE" value="0" desc="Pump disabled" />
-        <value name="ENABLE" value="1" desc="Pump enabled" />
-      </field>
-    </register>
-    <register name="OA_COMP_TRIM" address="0x40300F08" bitWidth="32" desc="Opamp Compenation Capacitor Trim">
-      <field name="OA_COMP_TRIM" from="1" to="0" access="RW" resetVal="" desc="Opamp Compenation Capacitor Trim">
-        <value name="HIGH_SPEED" value="01" desc="High Speed" />
-        <value name="BALANCED" value="10" desc="Balanced" />
-        <value name="HIGH_STABILITY" value="11" desc="High Stability" />
-      </field>
-    </register>
-  </block>
   <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="ADC" BASE="0x0" SIZE="0x0" desc="Sequencing SAR ADC" visible="true">
     <block name="cy_analog_noconnect_31" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -452,9 +405,72 @@
       <field name="WOUND_RESOLUTION" from="1" to="0" access="R" resetVal="" desc="Maximum SAR resolution allowed" />
     </register>
   </block>
+  <block name="Opamp" BASE="0x0" SIZE="0x0" desc="OpAmp" visible="true">
+    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_analog_virtualmux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_psoc4_abuf" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="CTB_CTRL" address="0x40300000" bitWidth="32" desc="Global CTB IP and power control">
+      <field name="DEEPSLEEP_ON" from="30" to="30" access="RW" resetVal="" desc="Selects component behavior in DeepSleep power mode">
+        <value name="DISABLE" value="0" desc="CTB IP disabled off during DeepSleep power mode" />
+        <value name="ENABLE" value="1" desc="CTB IP remains enabled during DeepSleep power mode (if ENABLED=1)" />
+      </field>
+      <field name="ENABLED" from="31" to="31" access="RW" resetVal="" desc="Selects component behavior in DeepSleep power mode">
+        <value name="DISABLE" value="0" desc="CTB IP disabled (put analog in power down, open all switches)" />
+        <value name="ENABLE" value="1" desc="CTB IP enabledCTB IP enabled" />
+      </field>
+    </register>
+    <register name="OA_RES_CTRL" address="0x40300004" bitWidth="32" desc="Opamp and resistor control">
+      <field name="OA_PWR_MODE" from="1" to="0" access="RW" resetVal="" desc="Selects power for opamp">
+        <value name="OFF" value="00" desc="Off" />
+        <value name="LOW" value="01" desc="Low power" />
+        <value name="MED" value="10" desc="Medium power" />
+        <value name="HIGH" value="11" desc="High power" />
+      </field>
+      <field name="OA0_DRIVE_STR_SEL" from="2" to="2" access="RW" resetVal="" desc="Opamp output strenght select">
+        <value name="1x" value="0" desc="Internal only" />
+        <value name="10x" value="1" desc="Output to pin" />
+      </field>
+      <field name="OA_PUMP_EN" from="11" to="11" access="RW" resetVal="" desc="Selects pump">
+        <value name="DISABLE" value="0" desc="Pump disabled" />
+        <value name="ENABLE" value="1" desc="Pump enabled" />
+      </field>
+    </register>
+    <register name="OA_COMP_TRIM" address="0x40300F08" bitWidth="32" desc="Opamp Compenation Capacitor Trim">
+      <field name="OA_COMP_TRIM" from="1" to="0" access="RW" resetVal="" desc="Opamp Compenation Capacitor Trim">
+        <value name="HIGH_SPEED" value="01" desc="High Speed" />
+        <value name="BALANCED" value="10" desc="Balanced" />
+        <value name="HIGH_STABILITY" value="11" desc="High Stability" />
+      </field>
+    </register>
+  </block>
+  <block name="Pin_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="PWM_1" BASE="0x0" SIZE="0x0" desc="" visible="true">
+    <block name="VMux_count" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VMux_reload" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VMux_start" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VMux_stop" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VMux_capture" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VMux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_m0s8_tcpwm_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="COUNTER" address="0x40200108" bitWidth="32" desc="Current counter value" />
+    <register name="CC" address="0x4020010C" bitWidth="32" desc="Compare / capture value" />
+    <register name="CC_BUF" address="0x40200110" bitWidth="32" desc="Compare / capture buffer value" />
+    <register name="PERIOD" address="0x40200114" bitWidth="32" desc="Period value" />
+    <register name="PERIOD_BUF" address="0x40200118" bitWidth="32" desc="Period buffer value" />
+  </block>
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="BLE_1" BASE="0x0" SIZE="0x0" desc="" visible="true">
+    <block name="or_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="LFCLK" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_m0s8_ble" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="bless_isr" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  </block>
+  <block name="Button_output" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="SW2_Switch" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Heart_Rate_input" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="Button_output" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="Led_Connected_Blue" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Led_Advertising_Green" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Wakeup_ISR" BASE="0x0" SIZE="0x0" desc="" visible="true" />
 </blockRegMap>
